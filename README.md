@@ -1,4 +1,13 @@
 # XHDatePicker  日期选择器
+---
+
+![License MIT](https://img.shields.io/github/license/mashape/apistatus.svg?maxAge=2592000)
+![Pod version](https://img.shields.io/cocoapods/v/XHDatePicker.svg?style=flat)
+[![Platform info](https://img.shields.io/cocoapods/p/XHDatePicker.svg?style=flat)](http://cocoadocs.org/docsets/XHDatePicker)
+[![Build Status](https://api.travis-ci.org/XHDatePicker/XHDatePicker.svg?branch=master)](https://travis-ci.org/XHDatePicker/XHDatePicker)
+
+---
+
 ![日期选择器](https://github.com/XHJCoder/XHDatePicker/blob/master/Screenshot/screen1.png)
 
 ## Installation【安装】
