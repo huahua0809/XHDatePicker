@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12121" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="12120" systemVersion="16G29" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12089"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -73,32 +73,41 @@
                                 </connections>
                             </button>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="开始时间" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="iJl-aj-LK1">
-                                <rect key="frame" x="36" y="329" width="303" height="30"/>
+                                <rect key="frame" x="36" y="360" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" enabled="NO" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="结束时间" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7RC-Fh-DuT">
-                                <rect key="frame" x="36" y="388" width="303" height="30"/>
+                                <rect key="frame" x="36" y="419" width="303" height="30"/>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
+                            <button opaque="NO" tag="6" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="STv-pP-5ZO">
+                                <rect key="frame" x="133" y="310" width="108" height="30"/>
+                                <state key="normal" title="时间类型：年月"/>
+                                <connections>
+                                    <action selector="selelctTimeAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CXB-uK-Xvj"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="iJl-aj-LK1" secondAttribute="trailing" constant="20" id="Awc-IF-AWZ"/>
                             <constraint firstItem="NuX-UK-JEg" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="E6t-pP-uuL"/>
                             <constraint firstItem="cyI-Gl-gvj" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="GkC-Iw-rPc"/>
+                            <constraint firstItem="STv-pP-5ZO" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="N9O-bo-vMO"/>
                             <constraint firstItem="N1j-Rm-lQx" firstAttribute="top" secondItem="sMf-ZW-aoI" secondAttribute="bottom" constant="5" id="Pow-J8-Srp"/>
                             <constraint firstItem="sMf-ZW-aoI" firstAttribute="top" secondItem="cyI-Gl-gvj" secondAttribute="bottom" constant="5" id="V2z-VC-tf6"/>
                             <constraint firstItem="iJl-aj-LK1" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="20" id="Wuu-Tm-KOs"/>
                             <constraint firstItem="N1j-Rm-lQx" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="X7w-B4-Odd"/>
                             <constraint firstItem="Lpg-Sb-0bS" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xum-VH-rek"/>
-                            <constraint firstItem="iJl-aj-LK1" firstAttribute="top" secondItem="Lpg-Sb-0bS" secondAttribute="bottom" constant="29" id="b0A-Ds-O1Z"/>
+                            <constraint firstItem="iJl-aj-LK1" firstAttribute="top" secondItem="Lpg-Sb-0bS" secondAttribute="bottom" constant="60" id="b0A-Ds-O1Z"/>
                             <constraint firstItem="Lpg-Sb-0bS" firstAttribute="top" secondItem="N1j-Rm-lQx" secondAttribute="bottom" constant="5" id="dLN-zO-doY"/>
                             <constraint firstItem="cyI-Gl-gvj" firstAttribute="top" secondItem="NuX-UK-JEg" secondAttribute="bottom" constant="5" id="dlJ-UW-VUo"/>
                             <constraint firstItem="7RC-Fh-DuT" firstAttribute="leading" secondItem="iJl-aj-LK1" secondAttribute="leading" id="g3w-nv-aqy"/>
+                            <constraint firstItem="STv-pP-5ZO" firstAttribute="top" secondItem="Lpg-Sb-0bS" secondAttribute="bottom" constant="10" id="k8d-Ce-Sqp"/>
                             <constraint firstItem="7RC-Fh-DuT" firstAttribute="trailing" secondItem="iJl-aj-LK1" secondAttribute="trailing" id="pKg-tw-Ee6"/>
                             <constraint firstItem="NuX-UK-JEg" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="110" id="tDh-2D-h7Q"/>
                             <constraint firstItem="7RC-Fh-DuT" firstAttribute="top" secondItem="iJl-aj-LK1" secondAttribute="bottom" constant="29" id="x4J-9C-Rpu"/>

@@ -54,6 +54,10 @@
             dateStyle = DateStyleShowHourMinute;
             format = @"HH:mm";
             break;
+        case 6:
+            dateStyle = DateStyleShowYearMonth;
+            format = @"YYYY-MM";
+            break;
             
         default:
             dateStyle = DateStyleShowYearMonthDayHourMinute;

@@ -15,7 +15,8 @@ typedef enum{
     DateStyleShowMonthDayHourMinute,
     DateStyleShowYearMonthDay,
     DateStyleShowMonthDay,
-    DateStyleShowHourMinute
+    DateStyleShowHourMinute,
+    DateStyleShowYearMonth
     
 }XHDateStyle;
 

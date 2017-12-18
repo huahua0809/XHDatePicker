@@ -225,6 +225,9 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
         case DateStyleShowHourMinute:
             [self addLabelWithName:@[@"时",@"分"]];
             return 2;
+        case DateStyleShowYearMonth:
+            [self addLabelWithName:@[@"年",@"月"]];
+            return 2;
         default:
             return 0;
     }
@@ -232,6 +235,7 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
 
 - (NSInteger)pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component {
     NSArray *numberArr = [self getNumberOfRowsInComponent];
+    
     return [numberArr[component] integerValue];
 }
 
@@ -246,6 +250,7 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
     NSInteger timeInterval = MAXYEAR - MINYEAR;
     
     switch (self.datePickerStyle) {
+            
         case DateStyleShowYearMonthDayHourMinute:
             return @[@(yearNum),@(monthNum),@(dayNum),@(hourNum),@(minuteNUm)];
             break;
@@ -260,6 +265,9 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
             break;
         case DateStyleShowHourMinute:
             return @[@(hourNum),@(minuteNUm)];
+            break;
+        case DateStyleShowYearMonth:
+            return @[@(yearNum),@(monthNum)];
             break;
         default:
             return @[];
@@ -341,6 +349,17 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
                 title = _minuteArray[row];
             }
             break;
+        case DateStyleShowYearMonth:{
+        
+            if (component == 0) {
+                title = _yearArray[row];
+            
+            }
+            if (component == 1) {
+                title = _monthArray[row];
+            }
+            break;
+        }
         default:
             title = @"";
             break;
@@ -459,6 +478,17 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
         }
             break;
             
+        case DateStyleShowYearMonth:{
+        
+            if (component == 0) {
+                yearIndex = row;
+            }
+            if (component == 1) {
+                monthIndex = row;
+            }
+            break;
+        }
+        
         default:
             break;
     }
@@ -636,6 +666,9 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
     indexArray = @[@(monthIndex),@(dayIndex)];
     if (self.datePickerStyle == DateStyleShowHourMinute)
     indexArray = @[@(hourIndex),@(minuteIndex)];
+    if (self.datePickerStyle == DateStyleShowYearMonth) {
+    indexArray = @[@(yearIndex),@(monthIndex)];
+    }
     
     self.showYearView.text = _yearArray[yearIndex];
     
@@ -701,6 +734,8 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
         case DateStyleShowMonthDay:
             _dateFormatter = @"yyyy-MM-dd";
             break;
+        case DateStyleShowYearMonth:
+            _dateFormatter = @"yyyy-MM";
             
         default:
             break;
