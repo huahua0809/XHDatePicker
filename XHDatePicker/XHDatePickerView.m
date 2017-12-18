@@ -349,7 +349,7 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
                 title = _minuteArray[row];
             }
             break;
-        case DateStyleShowYearMonth:{
+        case DateStyleShowYearMonth:
         
             if (component == 0) {
                 title = _yearArray[row];
@@ -359,7 +359,7 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
                 title = _monthArray[row];
             }
             break;
-        }
+        
         default:
             title = @"";
             break;
@@ -373,6 +373,7 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
 
 - (void)pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
 {
+    
     switch (self.datePickerStyle) {
         case DateStyleShowYearMonthDayHourMinute:{
             
@@ -482,6 +483,7 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
         
             if (component == 0) {
                 yearIndex = row;
+                self.showYearView.text =_yearArray[yearIndex];
             }
             if (component == 1) {
                 monthIndex = row;
@@ -666,16 +668,15 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
     indexArray = @[@(monthIndex),@(dayIndex)];
     if (self.datePickerStyle == DateStyleShowHourMinute)
     indexArray = @[@(hourIndex),@(minuteIndex)];
-    if (self.datePickerStyle == DateStyleShowYearMonth) {
+    if (self.datePickerStyle == DateStyleShowYearMonth)
     indexArray = @[@(yearIndex),@(monthIndex)];
-    }
     
     self.showYearView.text = _yearArray[yearIndex];
     
     [self.datePicker reloadAllComponents];
     
     for (int i=0; i<indexArray.count; i++) {
-        if ((self.datePickerStyle == DateStyleShowMonthDayHourMinute || self.datePickerStyle == DateStyleShowMonthDay)&& i==0) {
+        if ((self.datePickerStyle == DateStyleShowMonthDayHourMinute || self.datePickerStyle == DateStyleShowMonthDay || self.datePickerStyle == DateStyleShowYearMonth )&& i==0) {
             NSInteger mIndex = [indexArray[i] integerValue]+(12*(self.scrollToDate.year - MINYEAR));
             [self.datePicker selectRow:mIndex inComponent:i animated:animated];
         } else {
