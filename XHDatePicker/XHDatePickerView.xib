@@ -54,7 +54,7 @@
                                 <constraint firstAttribute="height" constant="30" id="F6m-VJ-qai"/>
                             </constraints>
                             <fontDescription key="fontDescription" type="system" pointSize="16"/>
-                            <state key="normal" title="注册时间">
+                            <state key="normal" title="时间选择">
                                 <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </state>
                         </button>

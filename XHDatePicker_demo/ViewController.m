@@ -55,7 +55,7 @@
             format = @"HH:mm";
             break;
         case 6:
-            dateStyle = DateStyleShowYearMonth;
+            dateStyle = DateStyleOnlyYearMonth;
             format = @"YYYY-MM";
             break;
             
@@ -78,15 +78,11 @@
         
     }];
     
-//    XHDatePickerView *datepicker = [[XHDatePickerView alloc] initWithCompleteBlock:^(NSDate *startDate,NSDate *endDate) {
-//        NSLog(@"\n开始时间： %@，结束时间：%@",startDate,endDate);
-//        self.startTimeText.text = [startDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
-//        self.endtimeText.text = [endDate stringWithFormat:@"yyyy-MM-dd HH:mm"];
-//    }];
+
     datepicker.datePickerStyle = dateStyle;
     datepicker.dateType = DateTypeStartDate;
-    datepicker.minLimitDate = [NSDate date:@"2017-2-28 12:22" WithFormat:@"yyyy-MM-dd HH:mm"];
-    datepicker.maxLimitDate = [NSDate date:@"2018-2-28 12:12" WithFormat:@"yyyy-MM-dd HH:mm"];
+    datepicker.minLimitDate = [NSDate date:@"1999-2-28 12:22" WithFormat:@"yyyy-MM-dd HH:mm"];
+    datepicker.maxLimitDate = [NSDate date:@"2070-2-28 12:12" WithFormat:@"yyyy-MM-dd HH:mm"];
     [datepicker show];
 }
 @end
