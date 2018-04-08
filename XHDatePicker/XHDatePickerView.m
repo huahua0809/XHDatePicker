@@ -42,7 +42,9 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
     NSDate *_endDate;
 }
 @property (weak, nonatomic) IBOutlet UIView *buttomView;
-@property (weak, nonatomic) IBOutlet UISegmentedControl *segmentView;
+
+@property (weak, nonatomic) IBOutlet UIButton *registTimeBtn;
+
 @property (weak, nonatomic) IBOutlet UILabel *showYearView;
 @property (weak, nonatomic) IBOutlet UIButton *doneBtn;
 @property (weak, nonatomic) IBOutlet NSLayoutConstraint *bottomConstraint;
@@ -84,14 +86,40 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
     return self;
 }
 
+
+-(instancetype)initWithCurrentDate:(NSDate *)currentDate WithTitleStr:(NSString *)titleStr CompleteBlock:(void(^)(NSDate *,NSDate *))completeBlock{
+    self = [super init];
+    if (self) {
+        self = [[[NSBundle bundleForClass:[self class]] loadNibNamed:NSStringFromClass([self class]) owner:self options:nil] lastObject];
+        
+        self.currentDate = currentDate;
+        
+        _dateFormatter = @"yyyy-MM-dd HH:mm";
+        [self setupUI];
+        [self defaultConfig];
+        
+        [self.registTimeBtn setTitle:titleStr forState:UIControlStateNormal];
+        
+        
+        if (completeBlock) {
+            self.doneBlock = ^(NSDate *startDate,NSDate *endDate) {
+                completeBlock(startDate,endDate);
+            };
+        }
+    }
+    return self;
+}
+
 -(void)setupUI {
-    self.segmentView.selectedSegmentIndex = 0;
-    [self.segmentView addTarget:self action:@selector(segmentAction:) forControlEvents:UIControlEventValueChanged];
+
     
     self.buttomView.layer.cornerRadius = 10;
     self.buttomView.layer.masksToBounds = YES;
     //self.themeColor = [UIColor colorFromHexRGB:@"#f7b639"];
+    
     self.themeColor = RGB(247, 133, 51);
+//    self.themeColor = HZ_27CD91Color;
+    
     self.frame=CGRectMake(0, 0, kScreenWidth, kScreenHeight);
     
     //点击背景是否影藏
@@ -200,6 +228,9 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
         case DateStyleShowHourMinute:
             [self addLabelWithName:@[@"时",@"分"]];
             return 2;
+        case DateStyleOnlyYearMonth:
+            [self addLabelWithName:@[@"年",@"月"]];
+            return 2;
         default:
             return 0;
     }
@@ -235,6 +266,9 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
             break;
         case DateStyleShowHourMinute:
             return @[@(hourNum),@(minuteNUm)];
+            break;
+            case DateStyleOnlyYearMonth:
+        return @[@(yearNum),@(monthNum)];
             break;
         default:
             return @[];
@@ -314,6 +348,14 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
             }
             if (component==1) {
                 title = _minuteArray[row];
+            }
+            break;
+        case DateStyleOnlyYearMonth:
+            if (component == 0) {
+                title = _yearArray[row];
+            }
+            if (component == 1) {
+                title = _monthArray[row];
             }
             break;
         default:
@@ -434,6 +476,17 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
             }
         }
             break;
+         case DateStyleOnlyYearMonth:
+            if (component == 0) {
+                yearIndex = row;
+                
+                self.showYearView.text =_yearArray[yearIndex];
+            }
+            if (component == 1) {
+                
+                monthIndex = row;
+            }
+            break;
             
         default:
             break;
@@ -464,7 +517,7 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
     }
     
     
-    NSLog(@"%@",self.scrollToDate);
+//    NSLog(@"%@",self.scrollToDate);
 }
 
 -(void)yearChange:(NSInteger)row {
@@ -612,6 +665,9 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
     indexArray = @[@(monthIndex),@(dayIndex)];
     if (self.datePickerStyle == DateStyleShowHourMinute)
     indexArray = @[@(hourIndex),@(minuteIndex)];
+    if (self.datePickerStyle == DateStyleOnlyYearMonth) {
+    indexArray = @[@(yearIndex),@(monthIndex)];
+    }
     
     self.showYearView.text = _yearArray[yearIndex];
     
@@ -659,22 +715,16 @@ typedef void(^doneBlock)(NSDate *,NSDate *);
 
 -(void)setThemeColor:(UIColor *)themeColor {
     _themeColor = themeColor;
-    self.segmentView.tintColor = themeColor;
+    
     self.doneBtn.backgroundColor = themeColor;
+    self.registTimeBtn.backgroundColor = themeColor;
+    
+    //设置圆角
+    self.registTimeBtn.layer.cornerRadius = 3;
+    self.registTimeBtn.layer.masksToBounds = YES;
 }
 
--(void)setDateType:(XHDateType)dateType {
-    _dateType = dateType;
-    switch (dateType) {
-        case DateTypeStartDate:
-            self.segmentView.selectedSegmentIndex = 0;
-            break;
-            
-        default:
-            self.segmentView.selectedSegmentIndex = 1;
-            break;
-    }
-}
+
 -(void)setDatePickerStyle:(XHDateStyle)datePickerStyle {
     _datePickerStyle = datePickerStyle;
     switch (datePickerStyle) {
